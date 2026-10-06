@@ -39,7 +39,8 @@ const analyticsData = [
   const getEngagementLevel = (user) => {
     // TODO: use if/else or ternary operator
     // Hint: Check if user.avgSessionDuration >= 200
-    return ""; // Replace with your implementation
+    // return ""; // Replace with your implementation
+    return user.avgSessionDuration >= 200 ? 'Good' : 'Low'
   };
   
   /**
@@ -51,7 +52,18 @@ const analyticsData = [
   const findLongestSessionUser = (data) => {
     // TODO: use for loop
     // Hint: Keep track of max duration and corresponding user name
-    return ""; // Replace with your implementation
+    // return ""; // Replace with your implementation
+    if (data.length === 0) {
+      return "";
+    }
+
+    let longestUser = data[0];
+    for (let i = 1; i < data.length; i++) {
+      if (data[i].avgSessionDuration > longestUser.avgSessionDuration) {
+        longestUser = data[i];
+      }
+    }
+    return longestUser.name;
   };
 
 
@@ -65,7 +77,8 @@ const analyticsData = [
   const formatSessions = (data) => {
     // TODO: use map
     // Hint: Use template literal `${user.name}: ${user.totalSessions} sessions`
-    return []; // Replace with your implementation
+    // return []; // Replace with your implementation
+    return data.map(user => `${user.name}: ${user.totalSessions} sessions`);
     
   };
   
@@ -78,7 +91,8 @@ const analyticsData = [
   const getActiveUsers = (data) => {
     // TODO: use filter + map
     // Hint: First filter users with totalSessions >= 5, then map to get names
-    return []; // Replace with your implementation
+    // return []; // Replace with your implementation
+    return data.filter(user=> user.totalSessions>=5).map(user=> user.name)
   };
   
   /**
@@ -90,7 +104,8 @@ const analyticsData = [
   const getTotalSessions = (data) => {
     // TODO: use reduce
     // Hint: Accumulate user.totalSessions
-    return 0; // Replace with your implementation
+    // return 0; // Replace with your implementation
+    return data.reduce((sum,user)=>sum+user.totalSessions,0)
   };
   
   // ========================================
